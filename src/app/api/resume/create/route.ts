@@ -4,7 +4,7 @@ import { GetCurrentUser } from "@/lib/getCurrentUser";
 import ResumeModel from "@/models/Resume.model";
 import { ApiResponse } from "@/types/api.types";
 
-async function POST(req: NextRequest) {
+export async function POST(req: NextRequest) {
     try{
         await connectDB();
 
