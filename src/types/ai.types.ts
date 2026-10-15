@@ -22,3 +22,11 @@ export interface GenerateExperienceDescriptionBody {
     techStack: string[];
     yearsOfExperience: number;
 }
+
+export interface ImproveContentBody {
+    content: string;
+}
+
+export interface ATSScoreBody {
+    resumeText: string;
+}
