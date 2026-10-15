@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { GenerateSummaryBody } from "@/types/ai.types";
+import { GenerateSkillsBody } from "@/types/ai.types";
 import { ApiResponse } from "@/types/api.types";
 import { generateAiContent } from "@/lib/nvida";
 
@@ -8,7 +8,7 @@ import { generateAiContent } from "@/lib/nvida";
 export async function POST(req: NextRequest) {
     try {
 
-        const body: GenerateSummaryBody = await req.json();
+        const body: GenerateSkillsBody = await req.json();
         const { experienceLevel, jobTitle } = body;
 
         if (!experienceLevel || !jobTitle) {
