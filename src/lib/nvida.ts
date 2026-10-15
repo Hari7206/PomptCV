@@ -7,7 +7,7 @@ const ai = new OpenAI({
 
 export async function generateAiContent(prompt: string) {
   const response = await ai.chat.completions.create({
-    model: "moonshotai/kimi-k2.6",
+    model: "nvidia/nemotron-3-ultra-550b-a55b",
     messages: [{ role: "user", content: prompt }],
   });
 
