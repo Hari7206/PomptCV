@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 
 
 
-interface UserDocument extends Omit<IUser, "_id">, Document {
+interface  UserDocument extends Omit<IUser, "_id">, Document {
     comparePassword(candidatePassword: string):boolean;
 }
 
@@ -47,6 +47,7 @@ userSchema.methods.comparePassword = function (candidatePassword: string): boole
     return bcrypt.compareSync(candidatePassword, this.password);
 }
 
-let UserModel =  mongoose.model("User" , userSchema);
+const UserModel =
+    mongoose.models.User || mongoose.model<UserDocument>("User", userSchema);
 
 export default UserModel;

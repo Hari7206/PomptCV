@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
             }, { status: 400 })
         }
 
-        let prompt = `You are an expert ATS (Applicant Tracking System) analyst and professional resume reviewer.
+        const prompt = `You are an expert ATS (Applicant Tracking System) analyst and professional resume reviewer.
 
 Analyze the resume text below and evaluate how ATS friendly it is. No job description is provided, so judge the resume on general ATS best practices and overall quality.
 
@@ -68,13 +68,20 @@ SCORING RULES:
 
 
         const result = await generateAiContent(prompt);
+        if (!result) {
+            throw new Error("ATS score generation returned no content");
+        }
 
-        const AtsScore = result;
+        const jsonText = result
+            .replace(/^```(?:json)?\s*/i, "")
+            .replace(/\s*```$/i, "")
+            .trim();
+        const atsScore = JSON.parse(jsonText);
 
         return NextResponse.json<ApiResponse>({
             success: true,
             message: "ATS score generated successfully",
-            data: { AtsScore },
+            data: { atsScore },
         }, { status: 201 })
 
 

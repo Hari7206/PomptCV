@@ -12,6 +12,14 @@ const  resumeSchema = new mongoose.Schema<IResume>({
         type: String,
         default: ""
     },
+    jobTitle: {
+        type: String,
+        default: ""
+    },
+    experienceLevel: {
+        type: String,
+        default: "Fresher"
+    },
     summary: {
         type: String,
         default: ""
@@ -78,6 +86,7 @@ const  resumeSchema = new mongoose.Schema<IResume>({
 });
 
 
-const ResumeModel = mongoose.model("Resume", resumeSchema);
+const ResumeModel =
+    mongoose.models.Resume || mongoose.model<IResume>("Resume", resumeSchema);
 
 export default ResumeModel;

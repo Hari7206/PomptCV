@@ -2,5 +2,6 @@ export interface ApiResponse {
     success: boolean;
     message: string;
     data?: object;
+    resume?: object;
     error?: object
 }
